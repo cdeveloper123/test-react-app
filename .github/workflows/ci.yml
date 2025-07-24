@@ -50,8 +50,16 @@ jobs:
     #               --project test-react-app  
     #   working-directory: frontend 
 
-    - name: Slack Notification
+    - name: Notify Slack on Success
+      if: success()
       run: |
         curl -X POST -H 'Content-type: application/json' \
-        --data '{"text": "Deployment to *${{ github.ref_name }}* branch is complete!"}' \
+        --data '{"text": ":white_check_mark: Deployment to *${{ github.ref_name }}* branch is complete!"}' \
+        ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: Notify Slack on failure
+      if: failure()
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+        --data '{"text": ":x: Deployment to *${{ github.ref_name }}* branch failed"}' \
         ${{ secrets.SLACK_WEBHOOK_URL }}
