@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hello = () => {
   return (
-    <div>I'm CI/CD</div>
+    <div>I'm CI/CD, Here</div>
   )
 }
 
