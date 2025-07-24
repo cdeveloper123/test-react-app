@@ -2,7 +2,10 @@ import React from 'react'
 
 const Hello = () => {
   return (
-    <div>I'm CI/CD, Here for the test</div>
+    <div>
+      I'm CI/CD
+      New task added to the hello
+    </div>
   )
 }
 
