@@ -28,7 +28,9 @@ jobs:
 
 
   deploy_staging:
+   needs: build
    runs-on: ubuntu-latest
    steps:
-    -name: deploy-staging
-    run: echo"deployment done!" 
+    - name: deploy-staging
+      working-directory: frontend
+      run: echo"deployment done!" 
