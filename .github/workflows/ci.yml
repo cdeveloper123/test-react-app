@@ -61,5 +61,5 @@ jobs:
       if: failure()
       run: |
         curl -X POST -H 'Content-type: application/json' \
-        --data '{"text": ":x: Deployment to *${{ github.ref_name }}* branch failed"}' \
+        --data '{"text": ":x: Deployment to *${{ github.ref_name }}* branch has *failed*."}' \
         ${{ secrets.SLACK_WEBHOOK_URL }}
