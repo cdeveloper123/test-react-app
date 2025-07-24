@@ -45,5 +45,5 @@ jobs:
       run: npm install -g vercel
 
     - name: Deploy to vercel
-      run: vercel --prod --confirm --token ${jiJf30UIFkDQITSZYLLWw6zW}
+      run: vercel --prod --confirm --token ${{ secrets.VERCEL_TOKEN }}
       working-directory: frontend 
