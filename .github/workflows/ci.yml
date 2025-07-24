@@ -51,7 +51,7 @@ jobs:
     #   working-directory: frontend 
 
     - name: Notify Slack on Success
-      if: success()
+      if: success()/
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data '{"text": ":white_check_mark: Deployment to *${{ github.ref_name }}* branch is complete!"}' \
