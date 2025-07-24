@@ -25,3 +25,10 @@ jobs:
     - name: Build Project
       working-directory: frontend
       run: npm run build
+
+
+  deploy_staging:
+   runs_on: ubuntu-latest
+  steps:
+    - name: deploy-staging
+      run: echo"deployment done!" 
