@@ -28,7 +28,7 @@ jobs:
 
 
   deploy_staging:
-   runs_on: ubuntu-latest
+   runs-on: ubuntu-latest
    steps:
     -name: deploy-staging
     run: echo"deployment done!" 
