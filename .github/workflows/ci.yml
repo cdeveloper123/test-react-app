@@ -81,7 +81,15 @@ jobs:
 
     steps: 
       - name: Checkout code
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
+
+      - name: Cached node_module
+        uses: actions/cache@v3
+        with: 
+          path: ~/.npm
+          key: ${{ runner.os }}-frontend-${{ hashFiles('frontend/package-lock.json')}}
+          restore-keys: |
+            ${{ runner.os }}-frontend
       
       - name: Install dependencies
         working-directory: frontend
@@ -90,14 +98,6 @@ jobs:
       - name: Make Build
         working-directory: frontend
         run: npm run build
-      
-      - name: Cached node_module
-        uses: actions/cache@v3
-        with: 
-          path: ~/.npm
-          key: ${{ runner.os }}-frontend-${{ hashFiles('frontend/package-lock.json')}}
-          restore-keys: |
-            ${{ runner.os }}-frontend
 
 
 
@@ -106,9 +106,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-      -name: notify on slack
-      if: success()
-      run: |
-        curl -X POST -H 'Content-type: application/json' \
-        --data {"text":":white_check_mark: Deployment to *{{github.ref_name}}* branch is complete"} \
-        ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: notify on slack
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data {"text":":white_check_mark: Deployment to *{{github.ref_name}}* branch is complete"} \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
